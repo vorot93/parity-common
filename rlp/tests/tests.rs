@@ -554,9 +554,7 @@ fn test_rlp_long_data_length_check() {
 #[test]
 fn test_the_exact_long_string() {
 	let mut data = hex!("b8ff").to_vec();
-	for _ in 0..255 {
-		data.push(b'c');
-	}
+	data.resize(data.len() + 255, b'c');
 
 	let rlp = Rlp::new(&data);
 

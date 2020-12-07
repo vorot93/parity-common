@@ -238,9 +238,9 @@ mod from_low_u64 {
 }
 
 #[cfg(feature = "rand")]
-mod rand {
+mod rand_test {
 	use super::*;
-	use ::rand::{rngs::StdRng, SeedableRng};
+	use rand::{rngs::StdRng, SeedableRng};
 
 	#[test]
 	fn random() {
@@ -375,6 +375,7 @@ mod ops {
 		H32::from([0b0101_0101, 0b1111_1111, 0b1100_1100, 0b0000_1111])
 	}
 
+	#[allow(clippy::identity_op)]
 	#[test]
 	fn bitand() {
 		assert_eq!(

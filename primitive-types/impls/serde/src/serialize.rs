@@ -110,7 +110,7 @@ pub fn from_hex(v: &str) -> Result<Vec<u8>, FromHexError> {
 /// The method will panic if:
 /// 1. `v` is shorter than 2 characters (you need to check 0x prefix outside).
 /// 2. `bytes` have incorrect length (make sure to allocate enough beforehand).
-fn from_hex_raw<'a>(v: &str, bytes: &mut [u8]) -> Result<usize, FromHexError> {
+fn from_hex_raw(v: &str, bytes: &mut [u8]) -> Result<usize, FromHexError> {
 	let bytes_len = v.len() - 2;
 	let mut modulus = bytes_len % 2;
 	let mut buf = 0;
@@ -273,6 +273,7 @@ where
 	deserializer.deserialize_str(Visitor { len })
 }
 
+#[allow(clippy::many_single_char_names)]
 #[cfg(test)]
 mod tests {
 	use super::*;

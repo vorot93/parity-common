@@ -6,6 +6,8 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
+#![allow(clippy::type_complexity)]
+
 use std::{fmt, mem};
 
 use log::warn;
@@ -157,7 +159,7 @@ impl<T: fmt::Debug, S: Scoring<T>> Transactions<T, S> {
 		self.scores.remove(index);
 		// Update scoring
 		scoring.update_scores(&self.transactions, &mut self.scores, scoring::Change::RemovedAt(index));
-		return true;
+		true
 	}
 
 	pub fn cull<R: Ready<T>>(&mut self, ready: &mut R, scoring: &S) -> SmallVec<[Transaction<T>; PER_SENDER]> {

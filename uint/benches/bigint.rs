@@ -12,6 +12,8 @@
 //! rustup run cargo bench
 //! ```
 
+#![allow(clippy::many_single_char_names)]
+
 use criterion::{criterion_group, criterion_main};
 use uint::{construct_uint, uint_full_mul_reg};
 
@@ -102,7 +104,7 @@ fn u128_div(c: &mut Criterion) {
 			"",
 			|b, (x, y, z)| {
 				b.iter(|| {
-					let x = black_box(u128::from(*x) << 64 + u128::from(*y));
+					let x = black_box(u128::from(*x) << (64 + u128::from(*y)));
 					black_box(x / u128::from(*z))
 				})
 			},

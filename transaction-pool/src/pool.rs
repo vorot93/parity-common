@@ -6,6 +6,8 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
+#![allow(clippy::type_complexity)]
+
 use log::{trace, warn};
 use std::collections::{hash_map, BTreeSet, HashMap};
 use std::slice;
@@ -195,12 +197,12 @@ where
 			AddResult::TooCheap { new, old } => {
 				let error = error::Error::TooCheapToReplace(old.hash().clone(), new.hash().clone());
 				self.listener.rejected(&new, &error);
-				return Err(error);
+				Err(error)
 			}
 			AddResult::TooCheapToEnter(new, score) => {
 				let error = error::Error::TooCheapToEnter(new.hash().clone(), format!("{:#x}", score));
 				self.listener.rejected(&new, &error);
-				return Err(error);
+				Err(error)
 			}
 		}
 	}
@@ -474,7 +476,7 @@ where
 	pub fn status<R: Ready<T>>(&self, mut ready: R) -> Status {
 		let mut status = Status::default();
 
-		for (_sender, transactions) in &self.transactions {
+		for transactions in self.transactions.values() {
 			let len = transactions.len();
 			for (idx, tx) in transactions.iter().enumerate() {
 				match ready.is_ready(tx) {

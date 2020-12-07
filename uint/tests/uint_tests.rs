@@ -6,9 +6,9 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-use core::convert::TryInto;
-use core::str::FromStr;
-use core::u64::MAX;
+#![allow(clippy::unnecessary_operation, clippy::many_single_char_names, clippy::eq_op, clippy::identity_op)]
+
+use core::{convert::TryInto, str::FromStr, u64::MAX};
 use crunchy::unroll;
 use uint::{construct_uint, overflowing, FromDecStrErr};
 
@@ -41,6 +41,7 @@ fn hash_impl_is_the_same_as_for_a_slice() {
 }
 
 // https://github.com/paritytech/parity-common/issues/420
+#[allow(clippy::single_match)]
 #[test]
 fn const_matching_works() {
 	const ONE: U256 = U256([1, 0, 0, 0]);
@@ -217,11 +218,11 @@ fn uint256_bits_test() {
 
 	//// Try to read the following lines out loud quickly
 	let mut shl = U256::from(70000u64);
-	shl = shl << 100;
+	shl <<= 100;
 	assert_eq!(shl.bits(), 117);
-	shl = shl << 100;
+	shl <<= 100;
 	assert_eq!(shl.bits(), 217);
-	shl = shl << 100;
+	shl <<= 100;
 	assert_eq!(shl.bits(), 0);
 
 	//// Bit set check
@@ -873,7 +874,7 @@ fn u256_multi_muls2() {
 fn example() {
 	let mut val: U256 = 1023.into();
 	for _ in 0..200 {
-		val = val * U256::from(2)
+		val *= U256::from(2)
 	}
 	assert_eq!(&format!("{}", val), "1643897619276947051879427220465009342380213662639797070513307648");
 }

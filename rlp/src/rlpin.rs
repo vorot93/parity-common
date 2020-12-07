@@ -79,7 +79,7 @@ impl PayloadInfo {
 
 	/// Create a new object from the given bytes RLP. The bytes
 	pub fn from(header_bytes: &[u8]) -> Result<PayloadInfo, DecoderError> {
-		let l = *header_bytes.first().ok_or_else(|| DecoderError::RlpIsTooShort)?;
+		let l = *header_bytes.first().ok_or(DecoderError::RlpIsTooShort)?;
 		if l <= 0x7f {
 			Ok(PayloadInfo::new(0, 1))
 		} else if l <= 0xb7 {
@@ -399,7 +399,7 @@ impl<'a> BasicDecoder<'a> {
 	{
 		let bytes = self.rlp;
 
-		let l = *bytes.first().ok_or_else(|| DecoderError::RlpIsTooShort)?;
+		let l = *bytes.first().ok_or(DecoderError::RlpIsTooShort)?;
 
 		if l <= 0x7f {
 			Ok(f(&[l])?)

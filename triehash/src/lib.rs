@@ -68,9 +68,9 @@ where
 /// use keccak_hasher::KeccakHasher;
 ///
 /// let v = vec![
-/// 	("doe", "reindeer"),
-/// 	("dog", "puppy"),
-/// 	("dogglesworth", "cat"),
+///     ("doe", "reindeer"),
+///     ("dog", "puppy"),
+///     ("dogglesworth", "cat"),
 /// ];
 ///
 /// let root = H256::from(hex!("8aad789dff2f538bca5d8ea56e8abe10f4c7ba3a5dea95fea4cd6e7c3a1168d3"));
@@ -115,9 +115,9 @@ where
 /// use keccak_hasher::KeccakHasher;
 ///
 /// let v = vec![
-/// 	("doe", "reindeer"),
-/// 	("dog", "puppy"),
-/// 	("dogglesworth", "cat"),
+///     ("doe", "reindeer"),
+///     ("dog", "puppy"),
+///     ("dogglesworth", "cat"),
 /// ];
 ///
 /// let root = H256::from(hex!("d4cd937e4a4368d7931a9cf51686b7e10abb3dce38a39000fd7902a092b64585"));

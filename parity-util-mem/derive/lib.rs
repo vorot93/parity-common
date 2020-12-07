@@ -20,6 +20,7 @@ extern crate synstructure;
 #[cfg(not(test))]
 decl_derive!([MallocSizeOf, attributes(ignore_malloc_size_of)] => malloc_size_of_derive);
 
+#[allow(dead_code)]
 fn malloc_size_of_derive(s: synstructure::Structure) -> proc_macro2::TokenStream {
 	let match_body = s.each(|binding| {
 		let ignore = binding.ast().attrs.iter().any(|attr| match attr.parse_meta().unwrap() {
