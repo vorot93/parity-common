@@ -242,9 +242,7 @@ macro_rules! overflowing {
 #[doc(hidden)]
 macro_rules! panic_on_overflow {
 	($name: expr) => {
-		if $name {
-			panic!("arithmetic operation overflow")
-		}
+		debug_assert!(!$name, "arithmetic operation overflow")
 	};
 }
 
